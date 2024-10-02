@@ -11,6 +11,9 @@ def format_data(lines: list[str]) -> list[list[int]]:
 def find_max_product_in_line(line: list[int]) -> int:
     """Finds the highest product of 4 consecutive numbers in a list."""
 
+    if len(line) < 4:
+        print(line)
+
     products = [line[i]*line[i+1]*line[i+2]*line[i+3]
                 for i in range(0, len(line)-3)]
 
@@ -63,9 +66,43 @@ def get_all_pos_lines(grid: list[list[int]]) -> list[list[int]]:
             for coord in start_coords]
 
 
+def get_neg_line(grid: list[list[int]], start_row: int, start_col: int) -> list[int]:
+    """Returns a line in the grid with gradient -1, starting from a given point."""
+
+    col_max = len(grid[0])
+    row_max = len(grid)
+
+    line = []
+
+    row = start_row
+    col = start_col
+
+    while row < row_max and col < col_max:
+        line.append(grid[row][col])
+        row += 1
+        col += 1
+
+    return line
+
+
+def get_all_neg_lines(grid: list[list[int]]) -> list[list[int]]:
+    """Returns all diagonal lines of positive gradient, with length > 3."""
+
+    start_coords = [(0, i) for i in range(0, len(grid[0])-3)]
+    start_coords.extend([(j, 0) for j in range(1, len(grid)-3)])
+
+    return [get_neg_line(grid, coord[0], coord[1])
+            for coord in start_coords]
+
+
 if __name__ == "__main__":
 
     input_data = get_input_data(11)
     grid = format_data(input_data)
 
-    print(get_all_pos_lines(grid))
+    max_hor = find_max_horizontal(grid)
+    max_ver = find_max_vertical(grid)
+    max_diag_pos = find_max_horizontal(get_all_pos_lines(grid))
+    max_diag_neg = find_max_horizontal(get_all_neg_lines(grid))
+
+    print(max([max_hor, max_ver, max_diag_neg, max_diag_pos]))
