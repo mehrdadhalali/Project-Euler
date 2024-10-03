@@ -1,4 +1,4 @@
-"""Challenge 11"""
+"""Problem 11"""
 from read_from_file import get_input_data
 
 
