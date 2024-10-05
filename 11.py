@@ -1,4 +1,6 @@
-"""Problem 11"""
+"""Problem 11
+    Given a grid of numbers, what is the largest product of 4 numbers on a line?
+    The line can be horizontal, vertical, or diagonal."""
 from read_from_file import get_input_data
 
 
