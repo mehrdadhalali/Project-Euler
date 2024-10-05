@@ -1,2 +1,2 @@
 # Project Euler
-This repository contains my solutions to the problems in [The Project Euler website](https://projecteuler.net/).
+This repository contains my solutions to the coding problems in [The Project Euler website](https://projecteuler.net/).
